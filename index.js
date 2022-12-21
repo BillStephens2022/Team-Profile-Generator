@@ -8,6 +8,8 @@ const Manager = require('./lib/manager');
 const Engineer = require('./lib/engineer');
 const Intern = require('./lib/intern');
 
+const generateHTML = require('./src/generateHTML');
+
 let addEmployeeBoolean = true;
 
 /* Create a team array that will hold all members of the team and related property values.
@@ -66,8 +68,8 @@ function addEmployeePrompt() {
             else if (employeeChoice.employeeType === "Intern") {
                 addIntern();  
             } else {
-                addEmployeeBoolean = false;   //will possibly change to generateHTML() later
-            } 
+                return writeToFile();  //will possibly change to generateHTML() later
+            }
         });
 }
 
@@ -133,9 +135,10 @@ function addIntern() {
         });
 }
 
+function writeToFile() {
+    fs.writeFile('./dist/index.html', generateHTML(teamArray), (err) => {
+        (err) ? console.log(err) : console.log("Team profile has been generated!");
+    });
+}
 
-addManager();  //add Manager kicks off entire series of prompts including adding other employees
-
-
- 
-
+addManager();
