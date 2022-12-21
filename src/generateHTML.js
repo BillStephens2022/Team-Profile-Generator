@@ -5,9 +5,9 @@ cardsArray = [];
 function generateManagerCard(manager){
   return `
   <div class="col s12 m4 l4">
-  <div class="card blue accent-1 white-text">
-    <h2 class="card-title">${manager.name}</h2>
-    <h5>Manager</h5>
+  <div class="card hoverable blue accent-1 white-text">
+    <h2 class="card-title deep-orange">${manager.name}</h2>
+    <h5><i class="fa-solid fa-bullhorn"></i> Manager <i class="fa-solid fa-bullhorn"></i></h5>
     <p>ID: ${manager.id}</p>
     <p>Email: <a href="mailto:${manager.email}">${manager.email}</a></p>
     <p>Office Number: ${manager.officeNumber}</p>
@@ -19,9 +19,9 @@ function generateManagerCard(manager){
 function generateEngineerCard(engineer){
   return `
   <div class="col s12 m4 l4">
-  <div class="card blue accent-1 white-text">
-    <h2 class="card-title">${engineer.name}</h2>
-    <h5>Engineer</h5>
+  <div class="card hoverable blue accent-1 white-text">
+    <h2 class="card-title deep-orange">${engineer.name}</h2>
+    <h5><i class="fa-solid fa-glasses"></i> Engineer <i class="fa-solid fa-glasses"></i></h5>
     <p>ID: ${engineer.id}</p>
     <p>Email: <a href="mailto:${engineer.email}">${engineer.email}</a></p>
     <p>Github Profile: <a href="https://github.com/${engineer.github}">${engineer.github}</a></p>
@@ -33,9 +33,9 @@ function generateEngineerCard(engineer){
 function generateInternCard(intern){
   return `
   <div class="col s12 m4 l4">
-  <div class="card blue accent-1 white-text">
-    <h2 class="card-title">${intern.name}</h2>
-    <h5>Intern</h5>
+  <div class="card hoverable blue accent-1 white-text">
+    <h2 class="card-title deep-orange">${intern.name}</h2>
+    <h5><i class="fa-solid fa-graduation-cap"></i> Intern <i class="fa-solid fa-graduation-cap"></i></h5>
     <p>ID: ${intern.id}</p>
     <p>Email: <a href="mailto:${intern.email}">${intern.email}</a></p>
     <p>School: ${intern.school}</p>
@@ -75,7 +75,7 @@ function generateHTML(teamData) {
       <meta charset="UTF-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>User Information</title>
+      <title>Team Profile</title>
   
       <!-- Google Fonts -->
       <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;900&family=Ubuntu&display=swap" rel="stylesheet">
@@ -84,9 +84,12 @@ function generateHTML(teamData) {
         <!-- Customized CSS -->
       <link rel="stylesheet" href="../dist/style.css">
     </head>
-    <body>
-      <div class="row blue" id="user-info">
-        <h4 class="white-text accent-1-text">Team Profile</h4>
+    <body class="blue accent-1">
+      <div class="header valign-wrapper blue accent-1">
+        <h1 class="white-text center-align">Team Profile</h1>
+      </div>
+      <div class="row blue-grey darken-4" id="user-info">
+       
         ${generateCards(teamData)}
         
       </div>
