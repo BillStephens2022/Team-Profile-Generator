@@ -8,9 +8,9 @@ const Manager = require('./lib/manager');
 const Engineer = require('./lib/engineer');
 const Intern = require('./lib/intern');
 
-const generateHTML = require('./src/generateHTML');
+// Import function used to generate the web page using the team data.
 
-let addEmployeeBoolean = true;
+const generateHTML = require('./src/generateHTML');
 
 /* Create a team array that will hold all members of the team and related property values.
 Will ultimately be used to render cards in an HTML file.*/
@@ -51,6 +51,10 @@ function addManager() {
         });
 }
 
+/* Function to prompt user for additional employees to add to the team.  If engineer is to be added, it will execute
+the addEngineer function, if an intern is to be added, it will execute the addIntern function.  If no employee is to 
+be added it will start process of generating the profile. */
+
 function addEmployeePrompt() {
     return inquirer
         .prompt([
@@ -68,10 +72,14 @@ function addEmployeePrompt() {
             else if (employeeChoice.employeeType === "Intern") {
                 addIntern();  
             } else {
-                return writeToFile();  //will possibly change to generateHTML() later
+                return writeToFile();  
             }
         });
 }
+
+/* function to add an Engineer to the team. Prompts user for details for the Engineer and then
+pushes the new Engineer object into the teamArray.  Once done, executes the addEmployeePrompt which will
+ask user if they want to add another employee. */
 
 function addEngineer() {
     return inquirer
@@ -104,6 +112,10 @@ function addEngineer() {
         });
 }
 
+/* function to add an Intern to the team. Prompts user for details for the Intern and then
+pushes the new Intern object into the teamArray.  Once done, executes the addEmployeePrompt which will
+ask user if they want to add another employee. */
+
 function addIntern() {
     return inquirer
         .prompt ([
@@ -135,10 +147,15 @@ function addIntern() {
         });
 }
 
+/* function that will generate an index.html file using the data from the team array (manager, engineer(s), 
+and intern(s) objects)) */
+
 function writeToFile() {
     fs.writeFile('./dist/index.html', generateHTML(teamArray), (err) => {
         (err) ? console.log(err) : console.log("Team profile has been generated!");
     });
 }
+
+// function call kicks off the process by prompting user to enter the team manager information
 
 addManager();
